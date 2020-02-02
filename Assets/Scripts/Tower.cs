@@ -1,15 +1,16 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+    // Parameters
     [SerializeField] Transform objectToPan;
-    [SerializeField] Transform targetEnemy;
     [SerializeField] float range = 32.0f; // TODO consolidate tower stats into one script
-    [SerializeField] float distanceToTarget;
     [SerializeField] ParticleSystem bullets;
+
+    // State
+    [SerializeField] float distanceToTarget;
+    Transform targetEnemy;
     bool isFiring = false;
 
     private void Start()
@@ -22,6 +23,7 @@ public class Tower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SetTargetEnemy();
         if (targetEnemy)
         {
             objectToPan.LookAt(targetEnemy);
@@ -40,6 +42,34 @@ public class Tower : MonoBehaviour
         else
         {
             StopFiring();
+        }
+    }
+
+    private void SetTargetEnemy()
+    {
+        var sceneEnemies = FindObjectsOfType<EnemyDamage>();
+        if (sceneEnemies.Length == 0) { return; }
+
+        Transform closestEnemy = sceneEnemies[0].transform;
+
+        foreach (EnemyDamage testEnemy in sceneEnemies)
+        {
+            closestEnemy = GetClosestEnemy(closestEnemy, testEnemy);
+        }
+        targetEnemy = closestEnemy;
+    }
+
+    private Transform GetClosestEnemy(Transform closestEnemy, EnemyDamage testEnemy)
+    {
+        float distToTest = Vector3.Distance(transform.position, testEnemy.transform.position);
+        float distToClosest = Vector3.Distance(transform.position, closestEnemy.position);
+        if (distToTest < distToClosest)
+        {
+            return testEnemy.transform;
+        }
+        else
+        {
+            return closestEnemy;
         }
     }
 
