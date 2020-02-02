@@ -15,18 +15,39 @@ public class Pathfinder : MonoBehaviour
 
     Waypoint searchCenter;
 
+    List<Waypoint> path = new List<Waypoint>();
+
     Vector2Int[] directions = { Vector2Int.up, Vector2Int.right, Vector2Int.down, Vector2Int.left };
 
-    // Start is called before the first frame update
-    void Start()
+
+    public List<Waypoint> GetPath()
     {
         LoadBlocks();
         ColorStartAndEnd();
-        PathFind();
-        //ExploreNeighbors();
+        BreadthFirstSearch();
+        CreatePath();
+        return path;
     }
 
-    private void PathFind()
+
+    private void CreatePath()
+    {
+        path.Add(endWayPoint);
+        Waypoint previous = endWayPoint.exploredFrom;
+        while (previous != startWayPoint)
+        {
+            // Add intermediate waypoints
+            path.Add(previous);
+            previous = previous.exploredFrom;
+        }
+
+        // Add start waypoint
+        path.Add(startWayPoint);
+        // Reverse the list
+        path.Reverse();
+    }
+
+    private void BreadthFirstSearch()
     {
         queue.Enqueue(startWayPoint);
 
@@ -49,13 +70,9 @@ public class Pathfinder : MonoBehaviour
         foreach (Vector2Int direction in directions)
         {
             Vector2Int neighborCoords = searchCenter.GetGridPos() + direction;
-            try
+            if (grid.ContainsKey(neighborCoords))
             {
                 QueueNewNeighbors(neighborCoords);
-            }
-            catch
-            {
-                // do nothing
             }
         }
     }
@@ -76,6 +93,7 @@ public class Pathfinder : MonoBehaviour
 
     private void ColorStartAndEnd()
     {
+        //TODO consider moving out 
         startWayPoint.SetTopColor(Color.yellow);
         endWayPoint.SetTopColor(Color.white);
     }
