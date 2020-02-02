@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,11 +20,5 @@ public class EnemyMover : MonoBehaviour
             transform.position = waypoint.transform.position;
             yield return new WaitForSeconds(1.0f);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

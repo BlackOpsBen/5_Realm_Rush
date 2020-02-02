@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
+    [SerializeField] int baseDamage = 1; // TODO make various turret types
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,10 @@ public class Turret : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public int GetBaseDamage()
+    {
+        return baseDamage;
     }
 }
