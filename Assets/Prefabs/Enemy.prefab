@@ -93,8 +93,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d88a8a30a822f0e4d95448d35b5848ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathFX: {fileID: 0}
-  parent: {fileID: 0}
 --- !u!65 &4268113470325266670
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -133,3 +131,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519d4a462ec8fef4f893e5cb0b22cc12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 30

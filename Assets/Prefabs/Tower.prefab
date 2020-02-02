@@ -47,6 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToPan: {fileID: 0}
   targetEnemy: {fileID: 0}
+  range: 32
+  distanceToTarget: 0
+  bullets: {fileID: 0}
 --- !u!114 &372045233702511571
 MonoBehaviour:
   m_ObjectHideFlags: 0

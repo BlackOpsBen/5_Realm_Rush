@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
 {
-    int health = 50; // TODO move so that different types of enemies can use this mover script
+    [SerializeField] int health = 30; // TODO move so that different types of enemies can use this mover script
     GameObject deathFX;
     Transform parent;
     bool isExploded = false;
