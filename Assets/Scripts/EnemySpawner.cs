@@ -10,6 +10,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] int enemyCount = 10;
     int waveEnemyCount;
     [SerializeField] Text enemyCountText;
+    [SerializeField] AudioClip spawnSFX;
 
     GameObject enemy;
 
@@ -26,6 +27,7 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < enemyCount; i++)
         {
+            GetComponent<AudioSource>().PlayOneShot(spawnSFX);
             GameObject spawn = Instantiate(enemy, transform.position, Quaternion.identity);
             spawn.transform.parent = gameObject.transform;
             yield return new WaitForSeconds(secondsBetweenSpawns);

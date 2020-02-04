@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyDamage : MonoBehaviour
 {
     [SerializeField] int health = 30; // TODO move so that different types of enemies can use this mover script
+    [SerializeField] AudioClip hitSFX;
+    [SerializeField] AudioClip deathSFX;
     GameObject deathFX;
     GameObject hitFX;
     Transform parent;
@@ -29,6 +31,7 @@ public class EnemyDamage : MonoBehaviour
 
     private void TakeDamage(GameObject attacker)
     {
+        GetComponent<AudioSource>().PlayOneShot(hitSFX);
         Turret turretType = attacker.GetComponentInParent<Turret>();
         health -= turretType.GetBaseDamage();
         StartCoroutine(FlashHit());
@@ -58,6 +61,7 @@ public class EnemyDamage : MonoBehaviour
     {
         if (!isExploded)
         {
+            AudioSource.PlayClipAtPoint(deathSFX, Camera.main.transform.position);
             GameObject fx = Instantiate(deathFX, transform.position, Quaternion.identity);
             fx.transform.parent = parent;
             isExploded = true;

@@ -9,6 +9,7 @@ public class PlayerBase : MonoBehaviour
     GameObject explosion;
     [SerializeField] int health = 10;
     [SerializeField] Text healthText;
+    [SerializeField] AudioClip damageSFX;
 
     Material baseMat;
     Material hitMat;
@@ -34,6 +35,7 @@ public class PlayerBase : MonoBehaviour
 
     public void TakeDamage(EnemyMover enemy)
     {
+        GetComponent<AudioSource>().PlayOneShot(damageSFX);
         health -= enemy.attackPower;
         healthText.text = health.ToString();
         StartCoroutine(FlashHit());
