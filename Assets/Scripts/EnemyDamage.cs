@@ -6,6 +6,7 @@ public class EnemyDamage : MonoBehaviour
 {
     [SerializeField] int health = 30; // TODO move so that different types of enemies can use this mover script
     GameObject deathFX;
+    GameObject hitFX;
     Transform parent;
     bool isExploded = false;
 
@@ -15,6 +16,7 @@ public class EnemyDamage : MonoBehaviour
     private void Start()
     {
         deathFX = Resources.Load<GameObject>("deathFX");
+        hitFX = Resources.Load<GameObject>("HitFX");
         parent = GameObject.Find("SpawnedAtRuntime").transform;
         baseMat = Resources.Load<Material>("Voxel Material");
         hitMat = Resources.Load<Material>("HitFlashMat");
@@ -30,6 +32,9 @@ public class EnemyDamage : MonoBehaviour
         Turret turretType = attacker.GetComponentInParent<Turret>();
         health -= turretType.GetBaseDamage();
         StartCoroutine(FlashHit());
+
+        GameObject fx = Instantiate(hitFX, transform.position + new Vector3(0f,9f,0f), Quaternion.identity);
+        fx.transform.parent = GameObject.Find("SpawnedAtRuntime").transform;
 
         if (health <= 0)
         {
