@@ -21,9 +21,9 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < enemyCount; i++)
         {
-            yield return new WaitForSeconds(secondsBetweenSpawns);
             GameObject spawn = Instantiate(enemy, transform.position, Quaternion.identity);
             spawn.transform.parent = gameObject.transform;
+            yield return new WaitForSeconds(secondsBetweenSpawns);
         }
     }
 }

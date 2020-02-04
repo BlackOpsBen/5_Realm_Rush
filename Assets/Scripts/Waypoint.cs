@@ -8,9 +8,18 @@ public class Waypoint : MonoBehaviour
 
     public bool isPlaceable = true;
 
+    public bool isOccupied = false;
+
     public Waypoint exploredFrom;
 
     const int gridSize = 10;
+
+    GameObject tower;
+
+    private void Start()
+    {
+        tower = Resources.Load<GameObject>("Tower");
+    }
 
     public int GetGridSize()
     {
@@ -35,11 +44,16 @@ public class Waypoint : MonoBehaviour
     {
         if (Input.GetButtonDown("Place"))
         {
-            if (isPlaceable)
+            if (isPlaceable && !isOccupied)
             {
-                print("Tower placement");
+                GameObject placedTower = Instantiate(tower, transform.position, Quaternion.identity);
+                placedTower.transform.parent = gameObject.transform;
+                isOccupied = true;
             }
-            print("Cannot place here");
+            else
+            {
+                print("Cannot place here");
+            }
         }
     }
 }
