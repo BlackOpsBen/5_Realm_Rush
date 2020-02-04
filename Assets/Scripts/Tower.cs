@@ -10,6 +10,7 @@ public class Tower : MonoBehaviour
 
     // State
     [SerializeField] float distanceToTarget;
+    public Waypoint stationPoint;
     Transform targetEnemy;
     bool isFiring = false;
 

@@ -40,7 +40,6 @@ public class Waypoint : MonoBehaviour
             if (isPlaceable && !isOccupied)
             {
                 FindObjectOfType<TowerFactory>().AddTower(this);
-                isOccupied = true;
             }
             else
             {
