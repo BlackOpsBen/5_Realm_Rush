@@ -46,7 +46,7 @@ public class EnemyDamage : MonoBehaviour
 
     private void ChangeMat(Material mat)
     {
-        gameObject.GetComponent<Renderer>().material = mat;
+        gameObject.GetComponentInChildren<Renderer>().material = mat;
     }
 
     private void KillEnemy()
