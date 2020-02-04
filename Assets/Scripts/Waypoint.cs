@@ -14,13 +14,6 @@ public class Waypoint : MonoBehaviour
 
     const int gridSize = 10;
 
-    GameObject tower;
-
-    private void Start()
-    {
-        tower = Resources.Load<GameObject>("Tower");
-    }
-
     public int GetGridSize()
     {
         return gridSize;
@@ -46,8 +39,7 @@ public class Waypoint : MonoBehaviour
         {
             if (isPlaceable && !isOccupied)
             {
-                GameObject placedTower = Instantiate(tower, transform.position, Quaternion.identity);
-                placedTower.transform.parent = GameObject.Find("Towers").transform;
+                FindObjectOfType<TowerFactory>().AddTower(this);
                 isOccupied = true;
             }
             else
