@@ -14,10 +14,10 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         enemy = Resources.Load<GameObject>("Enemy");
-        StartCoroutine(spawnEnemy(enemy));
+        StartCoroutine(SpawnEnemy(enemy));
     }
 
-    IEnumerator spawnEnemy(GameObject enemy)
+    IEnumerator SpawnEnemy(GameObject enemy)
     {
         for (int i = 0; i < enemyCount; i++)
         {
