@@ -72,7 +72,6 @@ public class Pathfinder : MonoBehaviour
             }
             ExploreNeighbors();
         }
-        // TODO work out path
     }
 
     private void ExploreNeighbors()

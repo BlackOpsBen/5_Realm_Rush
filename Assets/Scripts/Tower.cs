@@ -16,7 +16,10 @@ public class Tower : MonoBehaviour
     private void Start()
     {
         objectToPan = GetComponentInChildren<Turret>().transform;
-        targetEnemy = FindObjectOfType<EnemyMover>().transform;
+        if (FindObjectOfType<EnemyMover>())
+        {
+            targetEnemy = FindObjectOfType<EnemyMover>().transform;
+        }
         bullets = GetComponentInChildren<ParticleSystem>();
     }
 
@@ -31,11 +34,9 @@ public class Tower : MonoBehaviour
             if (distanceToTarget < range)
             {
                 Fire();
-                Debug.Log("Fire initiated");
             }
             else
             {
-                Debug.LogWarning("HOLDING FIRE");
                 StopFiring();
             }
         }
@@ -84,7 +85,6 @@ public class Tower : MonoBehaviour
 
     private void Fire()
     {
-        Debug.Log("Firing");
         if (!isFiring)
         {
             bullets.Play();

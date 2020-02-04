@@ -47,7 +47,7 @@ public class Waypoint : MonoBehaviour
             if (isPlaceable && !isOccupied)
             {
                 GameObject placedTower = Instantiate(tower, transform.position, Quaternion.identity);
-                placedTower.transform.parent = gameObject.transform;
+                placedTower.transform.parent = GameObject.Find("Towers").transform;
                 isOccupied = true;
             }
             else
