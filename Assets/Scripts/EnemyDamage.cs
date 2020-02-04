@@ -61,6 +61,7 @@ public class EnemyDamage : MonoBehaviour
             GameObject fx = Instantiate(deathFX, transform.position, Quaternion.identity);
             fx.transform.parent = parent;
             isExploded = true;
+            FindObjectOfType<EnemySpawner>().UpdateEnemyCount();
         }
         Destroy(gameObject);
     }

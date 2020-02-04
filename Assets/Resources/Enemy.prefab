@@ -14248,7 +14248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d88a8a30a822f0e4d95448d35b5848ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementPeriod: 0.1
+  attackPower: 1
+  movementPeriod: 1
 --- !u!114 &7021910484890381158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14261,7 +14262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519d4a462ec8fef4f893e5cb0b22cc12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
+  health: 15
 --- !u!1 &6506398413898440737
 GameObject:
   m_ObjectHideFlags: 0

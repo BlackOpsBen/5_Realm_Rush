@@ -2,15 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerBase : MonoBehaviour
 {
     GameObject explosion;
     [SerializeField] int health = 10;
+    [SerializeField] Text healthText;
+
     Material baseMat;
     Material hitMat;
     private void Start()
     {
+        healthText.text = health.ToString();
         explosion = Resources.Load<GameObject>("BaseExplosion");
         baseMat = Resources.Load<Material>("Voxel Material");
         hitMat = Resources.Load<Material>("HitFlashMat");
@@ -31,6 +35,7 @@ public class PlayerBase : MonoBehaviour
     public void TakeDamage(EnemyMover enemy)
     {
         health -= enemy.attackPower;
+        healthText.text = health.ToString();
         StartCoroutine(FlashHit());
         if (health <= 0)
         {
